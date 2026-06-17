@@ -34,9 +34,9 @@ model, explainer, features, cat_stats = load_artifacts()
 # GEMINI
 # =========================
 
-GEMINI_API_KEY = "AQ.Ab8RN6L6SoCotRJKpVeSItbWzFQ_0oNn-VsKfHIBH0R6krKC3A"
-
-genai.configure(api_key=GEMINI_API_KEY)
+genai.configure(
+    api_key=st.secrets["GEMINI_API_KEY"]
+)
 
 try:
     gemini_model = genai.GenerativeModel(
