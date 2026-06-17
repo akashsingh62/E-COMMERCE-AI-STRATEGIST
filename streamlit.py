@@ -34,17 +34,28 @@ model, explainer, features, cat_stats = load_artifacts()
 # GEMINI
 # =========================
 
-genai.configure(
-    api_key=st.secrets["GEMINI_API_KEY"]
-)
+# =========================
+# GEMINI CONFIG
+# =========================
 
 try:
-    gemini_model = genai.GenerativeModel(
-        "gemini-3.5-flash"
-    )
-except:
-    gemini_model = None
+    GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
 
+    genai.configure(
+        api_key=GEMINI_API_KEY
+    )
+
+    gemini_model = genai.GenerativeModel(
+         "gemini-3.5-flash"
+    )
+
+except Exception as e:
+
+    st.error(
+        f"Gemini Configuration Error: {e}"
+    )
+
+    gemini_model = None
 # =========================
 # SIDEBAR INPUTS
 # =========================
